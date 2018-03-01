@@ -1,0 +1,175 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Cadastro</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="form" (ngSubmit)="submeter($event)" #formulario="ngForm">
+
+        <ion-item>
+            <ion-label stacked >Países</ion-label>
+            <ion-select name="codpais" [(ngModel)]="codpais" formControlName="codpais">
+                <ion-option *ngFor="let pais of paises" [value]="pais.codigo">
+                    {{ pais.nome }}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>CPF</ion-label>
+            <ion-input type="number"
+                       name="cpf"
+                       [(ngModel)]="cpf"
+                       (keyup)="cpf.length > 0 ? erro = false : form.controls.cpf.invalid = false"
+                       formControlName="cpf">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.cpf.invalid">
+                <p *ngIf="erro || form.controls.cpf.errors.maxlength" class="erros">
+                    {{ erro ? erros['cpf'] : '"Cpf" não pode ter mais de 11 caracteres.' }}
+                </p>
+                <p *ngIf="erro || form.controls.cpf.errors.required" class="erros">
+                    {{ erro ? '' : '"Cpf" não pode ficar em branco.' }}
+                </p>
+
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>RG</ion-label>
+            <ion-input
+                    type="text"
+                    name="rg"
+                    [(ngModel)]="rg"
+                    (keyup)="rg.length > 0 ? erro = false : form.controls.rg.invalid = false"
+                    formControlName="rg">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.rg.invalid">
+                <p *ngIf="erro || form.controls.rg.errors.required" class="erros">
+                    {{ erro ? '' : '"Rg" não pode ficar em branco.' }}
+                </p>
+                <p *ngIf="erro || form.controls.rg.errors.maxlength" class="erros">
+                    {{ erro ? '' : '"Rg" não pode ter mais de 13 caracteres.' }}
+                </p>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Nome</ion-label>
+            <ion-input type="text"
+                       name="nome"
+                       [(ngModel)]="nome"
+                       formControlName="nome">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.nome.invalid">
+                <p *ngIf="erro || form.controls.nome.errors.required" class="erros">
+                    {{ erro ? erros['nome'] : '"Nome" não pode ficar em branco.' }}
+                </p>
+                <p *ngIf="erro || form.controls.nome.errors.maxlength" class="erros">
+                    {{ erro ? '' : '"Nome" não pode ter mais de 90 caracteres.' }}
+                </p>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Data Nascimento</ion-label>
+            <ion-datetime
+                    name="datanascimento"
+                    [(ngModel)]="datanascimento"
+                    displayFormat="DD/MM/YY" formControlName="datanascimento">
+            </ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Telefone</ion-label>
+            <ion-input type="text"
+                       name="fone"
+                       [(ngModel)]="fone"
+                       formControlName="fone">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.fone.invalid">
+                <p *ngIf="erro || form.controls.fone.errors.required" class="erros">
+                    {{ erro ? erros['fone'] : '"Fone" não pode ficar em branco.' }}
+                </p>
+                <p *ngIf="erro || form.controls.fone.errors.maxlength" class="erros">
+                    {{ erro ? '' : '"Fone" não pode ter mais de 9 caracteres.' }}
+                </p>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input type="text"
+                       name="email"
+                       (keyup)="email.length > 0 ? erro = false : form.controls.email.invalid = false"
+                       [(ngModel)]="email"
+                       formControlName="email">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.email.invalid">
+                <p *ngIf="erro || form.controls.email.errors.required" class="erros">
+                    {{ erro ? erros['email'] : '"Email" não pode ficar em branco.' }}
+                </p>
+                <p *ngIf="erro || form.controls.email.errors.maxlength" class="erros">
+                    {{ erro ? '' : '"Email" não pode ter mais de 60 caracteres.' }}
+                </p>
+                <p *ngIf="erro || (form.controls.email.errors.email && !form.controls.email.errors.required)" class="erros">
+                    {{ erro ? '' : '"Email" não é válido.' }}
+                </p>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Senha</ion-label>
+            <ion-input type="password"
+                       name="senha"
+                       [(ngModel)]="senha"
+                       formControlName="senha">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.senha.invalid">
+                <p *ngIf="erro || form.controls.senha.errors.required" class="erros">
+                    {{ erro ? erros['senha'] : '"Senha" não pode ficar em branco.' }}
+                </p>
+                <p *ngIf="erro || form.controls.senha.errors.maxlength" class="erros">
+                    {{ erro ? '' : '"Senha" não pode ter mais de 60 caracteres.' }}
+                </p>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Confimar Senha</ion-label>
+            <ion-input type="password"
+                       name="confirmPassword"
+                       formControlName="confirmPassword"
+                       (keyup)="confirmPassword.length > 0 ? erro = false : form.controls.confirmPassword.invalid = false"
+                       [(ngModel)]="confirmPassword">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="erro || form.controls.confirmPassword.invalid">
+                <p *ngIf="erro || form.controls.confirmPassword.errors.required" class="erros">
+                    {{ erro ? erros['confirmPassword'] : '"Confirmar Senha não pode ficar em branco.' }}
+                </p>
+            </div>
+        </ion-item>
+    </form>
+
+    <ion-fab top right>
+        <button ion-fab [disabled]="form.invalid" (click)="formulario.ngSubmit.emit()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+
+</ion-content>
