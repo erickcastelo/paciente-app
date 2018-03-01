@@ -6,7 +6,6 @@ import {Pais} from "../../models/pais";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Paciente} from "../../models/paciente";
 import {PacienteServiceProvider} from "../../providers/paciente-service/paciente-service";
-import {HomePage} from "../home/home";
 
 
 @IonicPage()
@@ -93,16 +92,6 @@ export class CadastroPage implements NavLifecycles{
             confirmPassword: ['', Validators.required]
         });
     }
-    // numero: string;
-    // codpais: number;
-    // cpf: string;
-    // rg: string;
-    // nome: string;
-    // datanascimento;
-    // fone: string;
-    // email: string;
-    // senha: string;
-    // confirmPassword;
 
     public submeter(event) {
 
@@ -148,7 +137,8 @@ export class CadastroPage implements NavLifecycles{
             })
             .subscribe(paciente => {
                 console.log(paciente);
-                mensagem = 'Cadastro realizado com sucesso!!'
+                mensagem = 'Cadastro realizado com sucesso!!';
+
             },(err: any) => {
                 console.log(err);
                 mensagem = err.message;
