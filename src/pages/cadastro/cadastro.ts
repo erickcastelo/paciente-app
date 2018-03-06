@@ -19,17 +19,6 @@ export class CadastroPage implements NavLifecycles{
     public paciente: Paciente;
     public paises: Pais[];
 
-    public numero: string;
-    public codpais: number;
-    public cpf: string;
-    public rg: string;
-    public nome: string = '';
-    public datanascimento: string = '';
-    public fone: string = '';
-    public email: string = '';
-    public senha: string = '';
-    public confirmPassword: string = '';
-
     private alerta: any;
     public erros = [];
     public erro = false;
@@ -44,11 +33,28 @@ export class CadastroPage implements NavLifecycles{
         private _servicePaciente: PacienteServiceProvider) {
 
         this.validations();
+
+        this.inicializadorObjeto();
     }
 
     ionViewDidLoad() {
 
         this.listCountrys();
+    }
+
+    private inicializadorObjeto() {
+
+        this.paciente = {
+            codpais: null,
+            cpf: '',
+            rg: '',
+            nome: '',
+            datanascimento: new Date().toISOString(),
+            fone: '',
+            email: '',
+            senha: '',
+            confirmPassword: ''
+        }as Paciente;
     }
 
     private listCountrys() {
@@ -57,7 +63,6 @@ export class CadastroPage implements NavLifecycles{
             .subscribe(
                 (paises: Pais[]) => {
                     this.paises = paises;
-                    console.log(paises);
                 },
                 (err: Error) => console.log(err.message)
             )
@@ -101,21 +106,9 @@ export class CadastroPage implements NavLifecycles{
 
         loading.present();
 
-        let datanascimento = new Date(this.datanascimento);
-        this.numero = `${datanascimento.getFullYear()}-${this.cpf}-PA`;
-
-        this.paciente = {
-            numero: this.numero,
-            codpais: this.codpais,
-            cpf: this.cpf,
-            rg: this.rg,
-            nome: this.nome,
-            datanascimento: this.datanascimento,
-            fone: this.fone,
-            email: this.email,
-            senha: this.senha,
-            confirmPassword: this.confirmPassword
-        };
+        let datanascimento = new Date(this.paciente.datanascimento);
+        let numero = `${datanascimento.getFullYear()}-${this.paciente.cpf}-PA`;
+        this.paciente.numero = numero;
 
         this.alerta = this._alertCtrl.create({
             title: 'Aviso',
@@ -138,10 +131,11 @@ export class CadastroPage implements NavLifecycles{
             .subscribe(paciente => {
                 console.log(paciente);
                 mensagem = 'Cadastro realizado com sucesso!!';
+                this.inicializadorObjeto();
 
             },(err: any) => {
                 console.log(err);
-                mensagem = err.message;
+                mensagem = err.statusText;
 
                 err.error.forEach(item => {
                     this.erros[item.field] = item.message;
@@ -149,5 +143,6 @@ export class CadastroPage implements NavLifecycles{
                 this.erro = true;
             })
     }
+
 }
 

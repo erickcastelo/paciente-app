@@ -1,0 +1,42 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="form" (ngSubmit)="logar()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <input type="text"/>
+                <ion-input type="email" name="email"  (keyup)="email.length > 0 ? erro = false : form.controls.email.invalid = false"
+                           [(ngModel)]="loginForm.email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div *ngIf="erro || form.controls.email.invalid">
+                    <p *ngIf="erro || form.controls.email.errors.required" class="erros">
+                        {{ erro ? erros['cpf'] : '"Email" não pode ficar em branco.' }}
+                    </p>
+
+                </div>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Senha</ion-label>
+                <ion-input type="password" name="password" (keyup)="password.length > 0 ? erro = false : form.controls.password.invalid = false"
+                           [(ngModel)]="loginForm.password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div *ngIf="erro || form.controls.password.invalid">
+                    <p *ngIf="erro || form.controls.password.errors.required" class="erros">
+                        {{ erro ? erros['password'] : '"Senha" não pode ficar em branco.' }}
+                    </p>
+
+                </div>
+            </ion-item>
+
+        </ion-list>
+
+        <button type="submit" ion-button full [disabled]="form.invalid">Login</button>
+    </form>
+</ion-content>
+

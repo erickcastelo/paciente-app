@@ -1,7 +1,4 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Cadastro</ion-title>
-    </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -10,7 +7,7 @@
 
         <ion-item>
             <ion-label stacked >Países</ion-label>
-            <ion-select name="codpais" [(ngModel)]="codpais" formControlName="codpais">
+            <ion-select name="codpais" [(ngModel)]="paciente.codpais" formControlName="codpais">
                 <ion-option *ngFor="let pais of paises" [value]="pais.codigo">
                     {{ pais.nome }}
                 </ion-option>
@@ -19,10 +16,10 @@
 
         <ion-item>
             <ion-label stacked>CPF</ion-label>
-            <ion-input type="number"
+            <ion-input type="text"
                        name="cpf"
-                       [(ngModel)]="cpf"
-                       (keyup)="cpf.length > 0 ? erro = false : form.controls.cpf.invalid = false"
+                       [(ngModel)]="paciente.cpf"
+                       (keyup)="paciente.cpf.length > 0 ? erro = false : form.controls.cpf.invalid = false"
                        formControlName="cpf">
             </ion-input>
         </ion-item>
@@ -43,8 +40,8 @@
             <ion-input
                     type="text"
                     name="rg"
-                    [(ngModel)]="rg"
-                    (keyup)="rg.length > 0 ? erro = false : form.controls.rg.invalid = false"
+                    [(ngModel)]="paciente.rg"
+                    (keyup)="paciente.rg.length > 0 ? erro = false : form.controls.rg.invalid = false"
                     formControlName="rg">
             </ion-input>
         </ion-item>
@@ -63,7 +60,7 @@
             <ion-label stacked>Nome</ion-label>
             <ion-input type="text"
                        name="nome"
-                       [(ngModel)]="nome"
+                       [(ngModel)]="paciente.nome"
                        formControlName="nome">
             </ion-input>
         </ion-item>
@@ -82,7 +79,7 @@
             <ion-label stacked>Data Nascimento</ion-label>
             <ion-datetime
                     name="datanascimento"
-                    [(ngModel)]="datanascimento"
+                    [(ngModel)]="paciente.datanascimento"
                     displayFormat="DD/MM/YY" formControlName="datanascimento">
             </ion-datetime>
         </ion-item>
@@ -91,7 +88,7 @@
             <ion-label stacked>Telefone</ion-label>
             <ion-input type="text"
                        name="fone"
-                       [(ngModel)]="fone"
+                       [(ngModel)]="paciente.fone"
                        formControlName="fone">
             </ion-input>
         </ion-item>
@@ -108,10 +105,10 @@
 
         <ion-item>
             <ion-label stacked>Email</ion-label>
-            <ion-input type="text"
+            <ion-input type="email"
                        name="email"
-                       (keyup)="email.length > 0 ? erro = false : form.controls.email.invalid = false"
-                       [(ngModel)]="email"
+                       (keyup)="paciente.email.length > 0 ? erro = false : form.controls.email.invalid = false"
+                       [(ngModel)]="paciente.email"
                        formControlName="email">
             </ion-input>
         </ion-item>
@@ -133,7 +130,7 @@
             <ion-label stacked>Senha</ion-label>
             <ion-input type="password"
                        name="senha"
-                       [(ngModel)]="senha"
+                       [(ngModel)]="paciente.senha"
                        formControlName="senha">
             </ion-input>
         </ion-item>
@@ -153,8 +150,8 @@
             <ion-input type="password"
                        name="confirmPassword"
                        formControlName="confirmPassword"
-                       (keyup)="confirmPassword.length > 0 ? erro = false : form.controls.confirmPassword.invalid = false"
-                       [(ngModel)]="confirmPassword">
+                       (keyup)="paciente.confirmPassword.length > 0 ? erro = false : form.controls.confirmPassword.invalid = false"
+                       [(ngModel)]="paciente.confirmPassword">
             </ion-input>
         </ion-item>
         <ion-item>
