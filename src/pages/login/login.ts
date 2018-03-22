@@ -39,12 +39,15 @@ export class LoginPage {
     private validations() {
 
         this.form = this.fb.group({
-            email: ['', Validators.required],
+            email: ['', Validators.compose([
+                Validators.required,
+                Validators.email
+            ])],
             password: ['', Validators.required]
         });
     }
 
-    public logar() {
+    public logar(): void {
 
         let loading = this._loadingCtrl.create({
             content: 'Processando dados...'

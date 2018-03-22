@@ -144,5 +144,9 @@ export class CadastroPage implements NavLifecycles{
             })
     }
 
+    public validacoes(atributo: string, value: string): void {
+        value.length > 0 ? this.erro = false : !this.form.controls[atributo].invalid;
+    }
+
 }
 

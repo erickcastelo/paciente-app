@@ -26,6 +26,8 @@ import { GooglePlus } from "@ionic-native/google-plus";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireModule } from "angularfire2";
 
+import { BrMaskerModule } from 'brmasker-ionic-3';
+
 const config = {
     apiKey: "AIzaSyDiBc-Bb258Sry9ScqSWN589Un0E_fQDN0",
     authDomain: "prontuario-e4102.firebaseapp.com",
@@ -48,7 +50,8 @@ const config = {
         IonicModule.forRoot(MyApp, {tabsPlacement: 'top'}),
         IonicStorageModule.forRoot(),
         AngularFireModule.initializeApp(config),
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        BrMaskerModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

@@ -13,13 +13,15 @@
                 </ion-option>
             </ion-select>
         </ion-item>
-
+        <!--(keyup)="paciente.cpf.length > 0 ? erro = false : form.controls.cpf.invalid = false"-->
         <ion-item>
             <ion-label stacked>CPF</ion-label>
             <ion-input type="text"
                        name="cpf"
+                       #inputCpf
                        [(ngModel)]="paciente.cpf"
-                       (keyup)="paciente.cpf.length > 0 ? erro = false : form.controls.cpf.invalid = false"
+                       maxlength="11"
+                       (keyup)="validacoes('cpf', inputCpf.value)"
                        formControlName="cpf">
             </ion-input>
         </ion-item>
@@ -35,13 +37,15 @@
             </div>
         </ion-item>
 
+        <!--(keyup)="paciente.rg.length > 0 ? erro = false : form.controls.rg.invalid = false"-->
         <ion-item>
             <ion-label stacked>RG</ion-label>
             <ion-input
                     type="text"
                     name="rg"
                     [(ngModel)]="paciente.rg"
-                    (keyup)="paciente.rg.length > 0 ? erro = false : form.controls.rg.invalid = false"
+                    #inputRg
+                    (keyup)="validacoes('rg', inputRg.value)"
                     formControlName="rg">
             </ion-input>
         </ion-item>
@@ -102,12 +106,13 @@
                 </p>
             </div>
         </ion-item>
-
+        <!--(keyup)="paciente.email.length > 0 ? erro = false : form.controls.email.invalid = false"-->
         <ion-item>
             <ion-label stacked>Email</ion-label>
             <ion-input type="email"
                        name="email"
-                       (keyup)="paciente.email.length > 0 ? erro = false : form.controls.email.invalid = false"
+                       #inputEmail
+                       (keyup)="validacoes('email', inputEmail.value)"
                        [(ngModel)]="paciente.email"
                        formControlName="email">
             </ion-input>
@@ -145,12 +150,14 @@
             </div>
         </ion-item>
 
+        <!--(keyup)="paciente.confirmPassword.length > 0 ? erro = false : form.controls.confirmPassword.invalid = false"-->
         <ion-item>
             <ion-label stacked>Confimar Senha</ion-label>
             <ion-input type="password"
                        name="confirmPassword"
                        formControlName="confirmPassword"
-                       (keyup)="paciente.confirmPassword.length > 0 ? erro = false : form.controls.confirmPassword.invalid = false"
+                       #inputConfirmPassword
+                       (keyup)="validacoes('confirmPassword', inputConfirmPassword.value)"
                        [(ngModel)]="paciente.confirmPassword">
             </ion-input>
         </ion-item>
