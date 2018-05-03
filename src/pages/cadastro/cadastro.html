@@ -20,20 +20,17 @@
                        name="cpf"
                        #inputCpf
                        [(ngModel)]="paciente.cpf"
-                       maxlength="11"
+                       maxlength="14"
                        (keyup)="validacoes('cpf', inputCpf.value)"
                        formControlName="cpf">
             </ion-input>
+
         </ion-item>
         <ion-item>
             <div *ngIf="erro || form.controls.cpf.invalid">
-                <p *ngIf="erro || form.controls.cpf.errors.maxlength" class="erros">
-                    {{ erro ? erros['cpf'] : '"Cpf" não pode ter mais de 11 caracteres.' }}
-                </p>
                 <p *ngIf="erro || form.controls.cpf.errors.required" class="erros">
-                    {{ erro ? '' : '"Cpf" não pode ficar em branco.' }}
+                    {{ erro ? '' : '"CPF" não pode ficar em branco.' }}
                 </p>
-
             </div>
         </ion-item>
 
@@ -146,6 +143,9 @@
                 </p>
                 <p *ngIf="erro || form.controls.senha.errors.maxlength" class="erros">
                     {{ erro ? '' : '"Senha" não pode ter mais de 60 caracteres.' }}
+                </p>
+                <p *ngIf="erro || form.controls['senha'].hasError('valid')" class="erros">
+                    {{ erro ? '': 'As senhas não podem ser diferentes.' }}
                 </p>
             </div>
         </ion-item>

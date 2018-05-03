@@ -6,6 +6,7 @@ import {Pais} from "../../models/pais";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Paciente} from "../../models/paciente";
 import {PacienteServiceProvider} from "../../providers/paciente-service/paciente-service";
+import {ConfirmPassword} from "../../helpers/validations/confirm-password";
 
 
 @IonicPage()
@@ -22,6 +23,7 @@ export class CadastroPage implements NavLifecycles{
     private alerta: any;
     public erros = [];
     public erro = false;
+    masks: any;
 
     constructor(
         public navCtrl: NavController,
@@ -73,7 +75,6 @@ export class CadastroPage implements NavLifecycles{
             codpais: [''],
             cpf: ['', Validators.compose([
                 Validators.required,
-                Validators.maxLength(11)
             ])],
             rg: ['', Validators.compose([
                 Validators.required,
@@ -95,6 +96,8 @@ export class CadastroPage implements NavLifecycles{
             ])],
             senha: ['', Validators.required],
             confirmPassword: ['', Validators.required]
+        }, {
+            validator: ConfirmPassword.confirmPassword
         });
     }
 
@@ -122,7 +125,7 @@ export class CadastroPage implements NavLifecycles{
         let mensagem = '';
 
         this._servicePaciente
-            .cadastrar(this.paciente)
+            .create(this.paciente)
             .finally(() => {
                 this.alerta.setSubTitle(mensagem);
                 this.alerta.present();
@@ -147,6 +150,5 @@ export class CadastroPage implements NavLifecycles{
     public validacoes(atributo: string, value: string): void {
         value.length > 0 ? this.erro = false : !this.form.controls[atributo].invalid;
     }
-
 }
 

@@ -69,15 +69,4 @@ export class LoginPage {
                 this.erro = true;
             })
     }
-
-    // public signInWithGoogle() {
-    //     this._loginService
-    //         .signWithGoogle()
-    //         .then(() => {
-    //             this.navCtrl.setRoot(HomePage);
-    //         }))))
-    //         .catch((error: Error) => {
-    //             alert(error.message);
-    //         })
-    // }
 }

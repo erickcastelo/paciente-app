@@ -1,18 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {BaseService} from "../base-service";
+import {Paciente} from "../../models/paciente";
 
 @Injectable()
-export class PacienteServiceProvider {
+export class PacienteServiceProvider extends BaseService<Paciente>{
 
-    constructor(private _http: HttpClient) { }
-
-    private _url() {
-        return 'http://localhost:8888/api/paciente/'
-    }
-
-    public cadastrar(paciente) {
-
-        return this._http
-            .post(this._url() + 'inserir', paciente)
+    constructor(protected _http: HttpClient) {
+        super(_http, 'paciente');
     }
 }

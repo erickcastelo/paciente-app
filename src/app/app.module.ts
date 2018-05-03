@@ -16,6 +16,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/map';
 
 import { PacienteServiceProvider } from '../providers/paciente-service/paciente-service';
 import { LoginServiceProvider } from '../providers/login-service/login-service';
@@ -25,8 +26,7 @@ import { GooglePlus } from "@ionic-native/google-plus";
 
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireModule } from "angularfire2";
-
-import { BrMaskerModule } from 'brmasker-ionic-3';
+import {TextMaskModule} from "angular2-text-mask";
 
 const config = {
     apiKey: "AIzaSyDiBc-Bb258Sry9ScqSWN589Un0E_fQDN0",
@@ -51,7 +51,7 @@ const config = {
         IonicStorageModule.forRoot(),
         AngularFireModule.initializeApp(config),
         AngularFireAuthModule,
-        BrMaskerModule
+        TextMaskModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

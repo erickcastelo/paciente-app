@@ -8,7 +8,8 @@
             <ion-item>
                 <ion-label floating>Email</ion-label>
                 <input type="text"/>
-                <ion-input type="email" name="email"  (keyup)="loginForm.email.length > 0 ? erro = false : form.controls.email.invalid = false"
+                <ion-input type="email" name="email"
+                           (keyup)="loginForm.email.length > 0 ? erro = false : form.controls.email.invalid = false"
                            [(ngModel)]="loginForm.email" formControlName="email"></ion-input>
             </ion-item>
             <ion-item>

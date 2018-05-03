@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Storage} from "@ionic/storage";
+import {PacienteServiceProvider} from "../../providers/paciente-service/paciente-service";
 
 @Component({
     selector: 'page-home',
@@ -8,9 +9,15 @@ import {Storage} from "@ionic/storage";
 })
 export class HomePage {
 
-    constructor(public navCtrl: NavController, private storage: Storage) {
-        this.storage.get('api-token')
-            .then(token => console.log(token));
+    constructor(public navCtrl: NavController, private servicePaciente: PacienteServiceProvider) {
+
+        this.servicePaciente.addParameter("sort", "nome");
+
+        this.servicePaciente
+            .getAll()
+            .subscribe(results => {
+                console.log(results);
+            }, error => console.log(error))
     }
 
 }
